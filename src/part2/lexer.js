@@ -12,7 +12,7 @@ var Lexer = /** @class */ (function () {
             continue;
         }
         if (this.idx >= this.program.length) {
-            return new token_1.Token(token_1.EOF, token_1.EOF);
+            return new token_1.Token(token_1.EOF, null);
         }
         var acc = '';
         while (this.idx < this.program.length && (!isNaN(parseInt(this.program[this.idx])))) {
@@ -25,11 +25,11 @@ var Lexer = /** @class */ (function () {
         else {
             if (this.program[this.idx] == '+') {
                 this.idx += 1;
-                return new token_1.Token(token_1.PLUS, token_1.PLUS);
+                return new token_1.Token(token_1.PLUS, '+');
             }
             else if (this.program[this.idx] == '-') {
                 this.idx += 1;
-                return new token_1.Token(token_1.MINUS, token_1.MINUS);
+                return new token_1.Token(token_1.MINUS, '-');
             }
         }
         throw Error("Error in getNextToken");

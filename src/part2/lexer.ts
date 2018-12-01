@@ -28,7 +28,7 @@ export class Lexer {
             continue;
         }
         if (this.idx >= this.program.length) {
-            return new Token(EOF, EOF);
+            return new Token(EOF, null);
         }
 
         let acc = '';
@@ -41,10 +41,10 @@ export class Lexer {
         } else {
             if (this.program[this.idx] == '+') {
                 this.idx += 1
-                return new Token(PLUS, PLUS);
+                return new Token(PLUS, '+');
             } else if (this.program[this.idx] == '-') {
                 this.idx += 1;
-                return new Token(MINUS, MINUS);
+                return new Token(MINUS, '-');
             }
         }
         throw Error("Error in getNextToken");
