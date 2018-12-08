@@ -1,8 +1,9 @@
-import { AST } from "./ast";
+import { AST, BinOp, UnaryOp } from "./ast";
 import { Lexer } from "./lexer";
 import { Parser } from "./parser";
 import * as _ from "lodash";
 import { PLUS, MULT, MINUS, DIV } from "./token";
+import { Num } from "../part7/ast";
 
 class NodeVisitor {
     /*
@@ -28,7 +29,7 @@ export class Interpreter extends NodeVisitor {
         this.parser = parser;
     }
 
-    private visitBinOp(node: AST): number {
+    private visitBinOp(node: BinOp): number {
         const leftValue = this.visit(node.left);
         const rightValue = this.visit(node.right);
         switch (node.token.tokenType) {
@@ -43,7 +44,7 @@ export class Interpreter extends NodeVisitor {
         }
     }
 
-    private visitUnaryOp(node: AST): number {
+    private visitUnaryOp(node: UnaryOp): number {
         const value = this.visit(node.expr);
         switch (node.token.tokenType) {
             case PLUS:
@@ -53,7 +54,7 @@ export class Interpreter extends NodeVisitor {
         }
     }
 
-    private visitNum(node: AST): number {
+    private visitNum(node: Num): number {
         return node.value;
     }
 

@@ -1,11 +1,6 @@
 import { Token } from "./token";
 
 export class AST {
-    left: AST;
-    right: AST;
-    token: Token;
-    expr: AST;
-    value: number;
 }
 
 export class BinOp extends AST {
